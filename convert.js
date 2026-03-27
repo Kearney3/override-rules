@@ -283,7 +283,7 @@ const baseRules = [
     `GEOIP,CN,${PROXY_GROUPS.DIRECT}`,
     `GEOIP,PRIVATE,${PROXY_GROUPS.DIRECT}`,
     "DST-PORT,22,SSH(22端口)",
-    `MATCH,${PROXY_GROUPS.DIRECT}`,    
+    `MATCH,${PROXY_GROUPS.DIRECT}`
 ];
 
 function buildRules({ quicEnabled }) {
