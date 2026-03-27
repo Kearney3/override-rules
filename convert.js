@@ -208,14 +208,6 @@ const ruleProviders = {
         url: "https://gcore.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/TikTok.list",
         path: "./ruleset/TikTok.list",
     },
-    EHentai: {
-        type: "http",
-        behavior: "classical",
-        format: "text",
-        interval: 86400,
-        url: "https://gcore.jsdelivr.net/gh/powerfullz/override-rules@master/ruleset/EHentai.list",
-        path: "./ruleset/EHentai.list",
-    },
     SteamFix: {
         type: "http",
         behavior: "classical",
@@ -267,7 +259,6 @@ const baseRules = [
     `RULE-SET,CDNResources,静态资源`,
     `RULE-SET,AdditionalCDNResources,静态资源`,
     `RULE-SET,Crypto,Crypto`,
-    `RULE-SET,EHentai,E-Hentai`,
     `RULE-SET,TikTok,TikTok`,
     `RULE-SET,SteamFix,${PROXY_GROUPS.DIRECT}`,
     `RULE-SET,GoogleFCM,${PROXY_GROUPS.DIRECT}`,
@@ -284,7 +275,6 @@ const baseRules = [
     "GEOSITE,SPOTIFY,Spotify",
     "GEOSITE,BAHAMUT,Bahamut",
     "GEOSITE,BILIBILI,Bilibili",
-    "GEOSITE,PIKPAK,PikPak",
     `GEOSITE,GFW,${PROXY_GROUPS.SELECT}`,
     `GEOSITE,CN,${PROXY_GROUPS.DIRECT}`,
     `GEOSITE,PRIVATE,${PROXY_GROUPS.DIRECT}`,
@@ -293,7 +283,7 @@ const baseRules = [
     `GEOIP,CN,${PROXY_GROUPS.DIRECT}`,
     `GEOIP,PRIVATE,${PROXY_GROUPS.DIRECT}`,
     "DST-PORT,22,SSH(22端口)",
-    `MATCH,${PROXY_GROUPS.SELECT}`,
+    `MATCH,${PROXY_GROUPS.DIRECT}`,    
 ];
 
 function buildRules({ quicEnabled }) {
@@ -699,7 +689,7 @@ function buildProxyGroups({
             name: "Microsoft",
             icon: "https://gcore.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Microsoft_Copilot.png",
             type: "select",
-            proxies: defaultProxies,
+            proxies: defaultProxiesDirect,
         },
         {
             name: "YouTube",
@@ -743,12 +733,6 @@ function buildProxyGroups({
             proxies: defaultProxies,
         },
         {
-            name: "E-Hentai",
-            icon: "https://gcore.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Ehentai.png",
-            type: "select",
-            proxies: defaultProxies,
-        },
-        {
             name: "Telegram",
             icon: "https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png",
             type: "select",
@@ -765,12 +749,6 @@ function buildProxyGroups({
         {
             name: "OneDrive",
             icon: "https://gcore.jsdelivr.net/gh/powerfullz/override-rules@master/icons/Onedrive.png",
-            type: "select",
-            proxies: defaultProxies,
-        },
-        {
-            name: "PikPak",
-            icon: "https://gcore.jsdelivr.net/gh/powerfullz/override-rules@master/icons/PikPak.png",
             type: "select",
             proxies: defaultProxies,
         },
@@ -798,6 +776,12 @@ function buildProxyGroups({
             type: "select",
             proxies: ["REJECT", "REJECT-DROP", PROXY_GROUPS.DIRECT],
         },
+        {
+            name: "漏网之鱼",
+            icon: "https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png",
+            type: "select",
+            proxies: [defaultProxiesDirect],
+        },        
         lowCostNodes.length > 0 || regexFilter
             ? {
                   name: PROXY_GROUPS.LOW_COST,
