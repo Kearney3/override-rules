@@ -780,7 +780,7 @@ function buildProxyGroups({
             name: "漏网之鱼",
             icon: "https://gcore.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png",
             type: "select",
-            proxies: [defaultProxiesDirect],
+            proxies: defaultProxiesDirect,
         },        
         lowCostNodes.length > 0 || regexFilter
             ? {
